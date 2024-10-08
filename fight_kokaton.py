@@ -1,3 +1,4 @@
+
 import os
 import random
 import sys
@@ -97,7 +98,7 @@ class Beam:
         self.rct = self.img.get_rect()  # ビームSurfaceのRectを抽出
         self.rct.centery = bird.rct.centery  # こうかとんの中心縦座標をビームの縦座標
         self.rct.left = bird.rct.right  # こうかとんの右座標をビームの左座標
-        self.vx, self.vy = +5, 0
+        self.vx, self.vy = +25, 0
 
     def update(self, screen: pg.Surface):
         """
@@ -170,6 +171,8 @@ def main():
             if bomb is not None:
                 if beam.rct.colliderect(bomb.rct):  # ビームと爆弾が衝突したら
                     beam, bomb = None, None
+                    bird.change_img(6, screen)
+                    pg.display.update()              
 
         key_lst = pg.key.get_pressed()
         bird.update(key_lst, screen)
